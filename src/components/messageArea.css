@@ -1,0 +1,25 @@
+.message-inner {
+    margin-left: 20px;
+    margin-bottom: 10px;
+    padding: 10px;
+    min-width: 200px;
+    max-width: 90%;
+    text-align: left;
+    min-height: 80px;
+    font: 400 1em, sans-serif;
+    display: inline-block;
+    border-radius: 10px;
+    background-color: rgb(227, 227, 227)
+}
+
+.incoming-message .message-inner {
+    /*background-color: #debda1;*/
+    /*background-color: #d3efc8;*/
+    background-color: #cff4fc;
+}
+
+.incoming-message {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 20px;
+}

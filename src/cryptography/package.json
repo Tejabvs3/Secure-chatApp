@@ -1,0 +1,7 @@
+{
+  "type": "module",
+  "dependencies": {
+    "big-integer": "^1.6.51",
+    "prompt-sync": "^4.2.0"
+  }
+}
