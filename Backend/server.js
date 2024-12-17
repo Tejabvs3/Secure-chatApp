@@ -23,7 +23,7 @@ const port = process.env.PORT_BACKEND
 const io = new Server(server, {
     cors: {
         //origin: `http://localhost:${process.env.PORT_FRONTEND}`, //changed from 3000
-        origin: process.env.URL_FRONTEND || `http://localhost:${process.env.PORT_FRONTEND}`,
+        origin: process.env.URL_FRONTEND,
         methods: ['GET', 'POST']
     }
 });
