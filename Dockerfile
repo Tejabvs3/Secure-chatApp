@@ -1,20 +1,20 @@
-# Step 1: Use Node.js to build the app
-FROM node:20-alpine
+# Use Node.js base image
+FROM node:18
 
-# Step 2: Set the working directory inside the container
+# Set working directory for the backend
 WORKDIR /app
 
-# Step 3: Copy package.json and package-lock.json to the container
-COPY package*.json ./
+# Copy package.json and package-lock.json (to optimize caching)
+COPY Backend/package*.json ./
 
-# Step 4: Install frontend dependencies
+# Install all dependencies
 RUN npm install
 
-# Step 5: Copy the rest of the frontend application code
-COPY . .
+# Copy all backend files
+COPY Backend/ ./
 
-# Step 6: Expose the port for the React development server
-EXPOSE 5000
+# Expose port 5001
+EXPOSE 5001
 
-# Step 7: Run the development server
-CMD ["npm", "start"]
+# Start the backend server
+CMD ["node", "server.js"]
