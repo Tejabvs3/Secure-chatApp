@@ -21,14 +21,9 @@ require('./connection');
 const port = process.env.PORT_BACKEND
 // console.log(process.env.PORT_FRONTEND)
 const io = new Server(server, {
-    // cors: {
-    //     //origin: `http://localhost:${process.env.PORT_FRONTEND}`, //changed from 3000
-    //     origin: process.env.URL_FRONTEND,
-    //     methods: ['GET', 'POST']
-    // }
     cors: {
-      origin: '*',  // WARNING: Allowing all origins is insecure!
-      methods: ['GET', 'POST']
+        origin: process.env.URL_FRONTEND,
+        methods: ['GET', 'POST']
     }
 });
 
