@@ -39,7 +39,7 @@ socket.off("new-user").on("new-user", (payload) => {
 
 function getRooms() {
     
-    fetch(`http://localhost:${process.env.REACT_APP_PORT_BACKEND}/rooms`)
+    fetch(`${REACT_APP_URL_BACKEND}/rooms`)
         .then((res) => res.json())
         .then((data) => setRooms(data));
 }
