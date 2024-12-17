@@ -18,10 +18,11 @@ app.use('/users', userRoutes)
 require('./connection');
 
 //backend server should run on 5001 and frontend on 5000
-const port = 5001
+const port = process.env.PORT_BACKEND
+// console.log(process.env.PORT_FRONTEND)
 const io = new Server(server, {
     cors: {
-        origin: 'http://localhost:5000', //changed from 3000
+        origin: `http://localhost:${process.env.PORT_FRONTEND}`, //changed from 3000
         methods: ['GET', 'POST']
     }
 });
@@ -65,7 +66,7 @@ io.on('connection', (socket)=> {
     })
   
     socket.on('message-room', async(room, content, sender, time, date) => {
-      console.log( content );
+      // console.log( content );
       const newMessage = await Message.create({content, from: sender, time, date, to: room}); //useful...stores new message in db
       let roomMessages = await getLastMessagesFromRoom(room);
       roomMessages = sortRoomMessagesByDate(roomMessages);
@@ -75,7 +76,7 @@ io.on('connection', (socket)=> {
     })
   app.delete('/logout', async(req, res)=> {
     try {
-      console.log("server",req.body);
+      // console.log("server",req.body);
       const {_id, newMessages} = req.body;
       const user = await User.findById(_id);
       user.status = "offline";

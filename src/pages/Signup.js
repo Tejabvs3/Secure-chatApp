@@ -6,18 +6,19 @@ export default function Signup() {
   const [email,setEmail]=useState('');
   const [password,setPassword]=useState('');
   const [username,setUsername]=useState('');
-  const [image,setImage]=useState("http://res.cloudinary.com/dklcboou4/image/upload/v1732739935/zrl0lwocdilsxf4pisk5.png");
+  var [image,setImage]=useState("http://res.cloudinary.com/dklcboou4/image/upload/v1732739935/zrl0lwocdilsxf4pisk5.png");
   const [imagePreview,setImagePreview]=useState("");
   const [uploadingImage,setUploadingImage]=useState(false);
   const Navigate = useNavigate();
   const signup=async()=>{
-    const res=await fetch('http://localhost:5001/users',{ //changed from 5000
+    console.log("TESING PORT ",process.env.REACT_APP_PORT_BACKEND)
+    const res=await fetch(`http://localhost:${process.env.REACT_APP_PORT_BACKEND}/users`,{ //changed from 5000
       method:"POST",
       headers:{
         "Content-Type":"application/json"
       },
       body:JSON.stringify({
-        username,email,password,picture:image.url
+        username,email,password,picture:image
       }),
     })
     if (!res.ok) {
@@ -79,7 +80,7 @@ export default function Signup() {
         return alert("Please upload your profile picture");
       }
       const url = await uploadImage(image);
-      image.url = url
+      image = url
       console.log(url);
       signup();
     }

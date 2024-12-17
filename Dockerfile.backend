@@ -1,23 +1,20 @@
-# Use the official Node.js LTS image
-FROM node:18-alpine
+# Use Node.js base image
+FROM node:18
 
-# Set the working directory inside the container
-WORKDIR /usr/src/app
+# Set working directory for the backend
+WORKDIR /app
 
-# Copy only package.json and package-lock.json to leverage Docker cache for dependencies
-COPY package*.json ./
+# Copy package.json and package-lock.json (to optimize caching)
+COPY Backend/package*.json ./
 
-# Install dependencies
-RUN npm install --production
+# Install all dependencies
+RUN npm install
 
-# Copy the rest of the application files
-COPY . .
+# Copy all backend files
+COPY Backend/ ./
 
-# Expose the port your application runs on (default is 5000 for Express apps)
+# Expose port 5001
 EXPOSE 5001
 
-# Define environment variables for production
-ENV NODE_ENV=production
-
-# Command to start the app
-CMD ["npm", "start"]
+# Start the backend server
+CMD ["node", "server.js"]
