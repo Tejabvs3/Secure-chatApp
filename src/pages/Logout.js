@@ -13,7 +13,7 @@ export default function Logout() {
                 const user = JSON.parse(localStorage.getItem('user'));
                 const { _id, newMessages } = user;
 
-                const res = await fetch(`http://localhost:${process.env.REACT_APP_PORT_BACKEND}/logout`, {
+                const res = await fetch(`${process.env.REACT_APP_URL_BACKEND}/logout`, {
                 method: "DELETE",
                 headers: {
                 'Content-Type': 'application/json'

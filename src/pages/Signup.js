@@ -12,7 +12,7 @@ export default function Signup() {
   const Navigate = useNavigate();
   const signup=async()=>{
     console.log("TESING PORT ",process.env.REACT_APP_PORT_BACKEND)
-    const res=await fetch(`http://localhost:${process.env.REACT_APP_PORT_BACKEND}/users`,{ //changed from 5000
+    const res=await fetch(`${process.env.REACT_APP_URL_BACKEND}/users`,{ //changed from 5000
       method:"POST",
       headers:{
         "Content-Type":"application/json"

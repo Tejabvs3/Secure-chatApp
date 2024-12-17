@@ -6,7 +6,8 @@ const server = http.createServer(app);
 const cors = require('cors');
 const User = require('./models/User');
 const Message = require('./models/Message')
-const userRoutes = require('./routes/userRoutes')
+const userRoutes = require('./routes/userRoutes');
+const { url } = require('inspector');
 
 const rooms = ["general", "tech", "games", "academics", "movies"];
 
@@ -22,7 +23,7 @@ const port = process.env.PORT_BACKEND
 // console.log(process.env.PORT_FRONTEND)
 const io = new Server(server, {
     cors: {
-        origin: `http://localhost:${process.env.PORT_FRONTEND}`, //changed from 3000
+        origin: process.env.URL_FRONTEND, //changed from 3000
         methods: ['GET', 'POST']
     }
 });
